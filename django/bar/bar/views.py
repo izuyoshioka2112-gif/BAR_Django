@@ -9,6 +9,8 @@ from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
 
+from django.views.decorators.csrf import ensure_csrf_cookie
+
 # Create your views here
 
 
@@ -16,7 +18,7 @@ class ListProductView(ListView):
     template_name = "product/product_list.html"
     queryset = Product.objects.order_by("category")
 
-
+@method_decorator(ensure_csrf_cookie, name="dispatch")
 class DetailListProductView(DetailView):
     template_name = "product/product_detail.html"
     model = Product
