@@ -10,7 +10,7 @@ from . import views
 
 urlpatterns = [
     path("", views.ListProductView.as_view(), name="product"),
-    path("staff/", auth_views.LoginView.as_view(), name="login"),
+    path("staff/", auth_views.LoginView.as_view(), name="staff_login"),
     path(
         "product/<int:pk>/detail/",
         views.DetailListProductView.as_view(),

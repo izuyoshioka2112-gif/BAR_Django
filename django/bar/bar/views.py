@@ -4,7 +4,10 @@ from .models import Product, Staff, Order, OrderItem
 import json
 from django.http import JsonResponse
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
+
+# セキュリティ（スタッフとして入っていたら表示できるように）
+from django.contrib.admin.views.decorators import staff_member_required
+from django.utils.decorators import method_decorator
 
 # Create your views here
 
@@ -23,8 +26,8 @@ class DetailListProductView(DetailView):
         context["quantity_range"] = range(1, 6)
         return context
 
-
-class StaffCartList(LoginRequiredMixin, ListView):
+@method_decorator(staff_member_required(login_url="staff_login"), name="dispatch")
+class StaffCartList(ListView):
     template_name = "staff/cart_list.html"
     model = Order
 
@@ -33,7 +36,8 @@ class StaffCartList(LoginRequiredMixin, ListView):
         return super().get_queryset().order_by("created_at")
 
 
-class StaffCartHistory(LoginRequiredMixin, ListView):
+@method_decorator(staff_member_required(login_url="staff_login"), name="dispatch")
+class StaffCartHistory(ListView):
     template_name = "staff/cart_history.html"
     model = Order
 
@@ -41,7 +45,8 @@ class StaffCartHistory(LoginRequiredMixin, ListView):
         return super().get_queryset().order_by("-created_at")
 
 
-class ProductStock(LoginRequiredMixin, ListView):
+@method_decorator(staff_member_required(login_url="staff_login"), name="dispatch")
+class ProductStock(ListView):
     template_name = "staff/product_stock.html"
     model = Product
 
@@ -52,6 +57,7 @@ class ProductStock(LoginRequiredMixin, ListView):
 
 
 # 商品管理
+@staff_member_required(login_url="staff_login")
 def product_stock_api(request):
     if request.method == "POST":
         data = json.loads(request.body)
@@ -64,6 +70,7 @@ def product_stock_api(request):
 
 
 # スタッフ管理
+@staff_member_required(login_url="staff_login")
 def staff_toggle_api(request):
     if request.method == "POST":
         data = json.loads(request.body)
@@ -240,7 +247,7 @@ def order_confirm_view(request):
 def order_done_view(request):
     return render(request, "product/order_done.html")
 
-
+@staff_member_required(login_url="staff_login")
 def complete_order_api(request):
     if request.method == "POST":
         data = json.loads(request.body)
