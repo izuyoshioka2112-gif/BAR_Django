@@ -4,3 +4,12 @@
 スタッフログイン
 name: bar
 Ps: KDGHT2026
+
+スーパーユーザ
+izune
+sugijamu6678
+
+# サービス名（django, gunicornなど）を指定して再起動
+sudo systemctl restart bar
+
+http://168.110.12.16/
