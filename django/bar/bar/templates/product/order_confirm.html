@@ -25,6 +25,7 @@
                 </tbody>
             </table>
         </div>
+
     </div>
 
     <form method="post" onsubmit="return confirmOrder()" class="card">
@@ -32,16 +33,7 @@
 
         <div class="card-body product-card">
             <h4 class="mb-4">選択必須項目</h4>
-            <div class="mb-4">
-                <label for="table_number" class="form-label">卓番号</label>
-                <select name="table_number" id="table_number" class="form-select" required>
-                    <option value="" selected disabled>選択してください</option>
-                    {% for number in table_range %}
-                    <option value="{{ number }}">{{ number }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-
+            <!-- ここに名前を書く（重複OKパスいらない） -->
             <fieldset>
                 <legend class="fs-6">担当スタッフ</legend>
                 <div class="d-flex flex-wrap gap-3">

@@ -185,13 +185,11 @@ def order_confirm_view(request):
         messages.error(request, "商品が入っていません")
         return redirect("cart")
     if request.method == "POST":
-        table_number = request.POST.get("table_number")
         staff_id = request.POST.get("staff")
         # POST.get＝お客のブラウザから取ってきてる
         staff = Staff.objects.get(id=staff_id)
         # objects.get＝DBから取ってきてる
         order = Order.objects.create(
-            table_number=table_number,
             staff=staff,
         )
         invalid_ids = []
