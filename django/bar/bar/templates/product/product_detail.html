@@ -13,6 +13,11 @@
                 <span class="fs-4 fw-bold">{{ object.price }}円</span>
             </div>
 
+            <div class="mb-3">
+                <p class="fw-semibold mb-1">アレルギー</p>
+                <p class="mb-0">{{ object.allergy }}</p>
+            </div>
+            
             <label for="quantity" class="form-label">数量</label>
             <select id="quantity" name="quantity" class="form-select mb-3">
                 {% for i in quantity_range %}

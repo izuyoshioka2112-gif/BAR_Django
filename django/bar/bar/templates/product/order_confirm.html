@@ -13,7 +13,6 @@
                     <tr>
                         <th scope="col">商品</th>
                         <th scope="col" class="text-center">数量</th>
-                        <th scope="col">アレルギー</th>
                         <th scope="col" class="text-end">小計</th>
                     </tr>
                 </thead>
@@ -21,9 +20,6 @@
                     {% for item in cart_items %}
                     <tr>
                         <td>{{ item.product.name }}</td>
-                        <p class="mb-3">
-                            <td>{{ item.product.allergy }}</td>
-                        </p>
                         <td class="text-center">{{ item.quantity }}個</td>
                         <td class="text-end text-nowrap">{{ item.subtotal }}円</td>
                     </tr>
