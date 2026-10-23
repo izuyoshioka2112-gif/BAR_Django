@@ -21,7 +21,9 @@
                     {% for item in cart_items %}
                     <tr>
                         <td>{{ item.product.name }}</td>
-                        <td>{{ item.product.allergy }}</td>
+                        <p class="mb-3">
+                            <td>{{ item.product.allergy }}</td>
+                        </p>
                         <td class="text-center">{{ item.quantity }}個</td>
                         <td class="text-end text-nowrap">{{ item.subtotal }}円</td>
                     </tr>
