@@ -13,7 +13,6 @@
                     <tr>
                         <th scope="col">商品</th>
                         <th scope="col" class="text-center">数量</th>
-                        <th scope="col" class="text-end">小計</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -21,15 +20,10 @@
                     <tr>
                         <td>{{ item.product.name }}</td>
                         <td class="text-center">{{ item.quantity }}個</td>
-                        <td class="text-end text-nowrap">{{ item.subtotal }}円</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
-        </div>
-
-        <div class="card-body text-end">
-            <h3 class="mb-0">合計：{{ total_price }}円</h3>
         </div>
     </div>
 

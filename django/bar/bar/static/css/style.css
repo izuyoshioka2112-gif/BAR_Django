@@ -43,8 +43,7 @@ body{
     color: var(--txt_black);
 }
 
-.product-card .text-secondary,
-.product-card .text-muted {
+.product-card .text-secondary {
     color: var(--txt_black);
 }
 .cart-table {
