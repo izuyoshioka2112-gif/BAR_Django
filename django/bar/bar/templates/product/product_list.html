@@ -11,7 +11,7 @@
         <div class="col">
             <div class="card h-100 shadow-sm product-card">
                 <div class="card-body d-flex flex-column">
-    <h5 class="card-title">{{ item.name }}</h5>
+    <h5 class="card-title list-product">{{ item.name }}</h5>
 
     {% if item.is_available %}
     <a href="{% url 'product_detail' item.id %}"
