@@ -6,7 +6,7 @@ from .models import Product, Staff, Order, OrderItem
 
 # みやすくした
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ("name", "price", "allergy", "is_available")
+    list_display = ("name", "allergy", "is_available")
     list_editable = ("is_available",)
 
 

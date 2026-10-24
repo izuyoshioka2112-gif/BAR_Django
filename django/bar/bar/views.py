@@ -24,7 +24,7 @@ class DetailListProductView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["quantity_range"] = range(1, 6)
+        context["quantity_range"] = range(1, 5)
         return context
 
 @method_decorator(staff_member_required(login_url="staff_login"), name="dispatch")
@@ -90,11 +90,11 @@ def add_to_cart_api(request):
         quantity = int(data.get("quantity", 1))
         cart = request.session.get("cart", {})
         cart[product_id] = cart.get(product_id, 0) + quantity
-        if cart[product_id] > 5:
+        if cart[product_id] > 4:
             return JsonResponse(
                 {
                     "status": "error",
-                    "message": "商品一つにつき、5個以上の注文はできません",
+                    "message": "商品一つにつき、4個以上の注文はできません",
                 },
                 status=400,
             )
@@ -107,7 +107,6 @@ def add_to_cart_api(request):
 def cart_view(request):
     cart = request.session.get("cart", {})
     cart_items = []
-    total_price = 0
     invalid_ids = []  # 存在しなかった商品IDを覚えておくリスト
     for product_id, quantity in cart.items():
         # DBの確認
@@ -119,13 +118,10 @@ def cart_view(request):
         if not product.is_available:  # ← 在庫切れかどうかもチェック
             invalid_ids.append(product_id)
             continue
-        subtotal = product.price * quantity
-        total_price += subtotal
         cart_items.append(
             {
                 "product": product,
                 "quantity": quantity,
-                "subtotal": subtotal,
             }
         )
 
@@ -143,8 +139,7 @@ def cart_view(request):
         "product/cart.html",
         {
             "cart_items": cart_items,
-            "total_price": total_price,
-            "quantity_range": range(1, 6),
+            "quantity_range": range(1, 5),
         },
     )
 
@@ -210,7 +205,6 @@ def order_confirm_view(request):
         request.session.modified = True
         return redirect("order_done")
     cart_items = []
-    total_price = 0
     invalid_ids = []
     for product_id, quantity in cart.items():
         try:
@@ -218,13 +212,10 @@ def order_confirm_view(request):
         except Product.DoesNotExist:
             invalid_ids.append(product_id)
             continue
-        subtotal = product.price * quantity
-        total_price += subtotal
         cart_items.append(
             {
                 "product": product,
                 "quantity": quantity,
-                "subtotal": subtotal,
             }
         )
     staff_list = Staff.objects.filter(is_available=True)
@@ -238,7 +229,6 @@ def order_confirm_view(request):
         "product/order_confirm.html",
         {
             "cart_items": cart_items,
-            "total_price": total_price,
             "staff_list": staff_list,
             "table_range": table_range,
         },
