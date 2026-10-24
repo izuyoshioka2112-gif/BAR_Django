@@ -20,6 +20,10 @@
     --txt_white: #ffffff;
 }
 
+.list-product{
+    margin-bottom: 30px;
+}
+
 /* ヘッダーをピンクに */
 .site-header {
   background-color: #ee60a7;
@@ -59,4 +63,10 @@ body{
   --bs-table-bg: var(--txt_black);
   --bs-table-color: var(--txt_white);
 --bs-table-border-color: var(--txt_black);
+}
+
+/* 商品確認画面の商品 */
+.cart-table tbody tr.conf > td {
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
