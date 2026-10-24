@@ -12,19 +12,19 @@
         <div class="col">
             <div class="card h-100 shadow-sm product-card">
                 <div class="card-body d-flex flex-column">
-    <h5 class="card-title list-product">{{ item.name }}</h5>
+                    <h5 class="card-title list-product">{{ item.name }}</h5>
 
-    {% if item.is_available %}
-    <a href="{% url 'product_detail' item.id %}"
-       class="btn btn-dark mt-auto">
-        商品追加
-    </a>
-    {% else %}
-    <p class="text-muted bg-secondary bg-opacity-25 rounded p-2 mb-0">
-        只今品切れ中です
-    </p>
-    {% endif %}
-</div>
+                    {% if item.is_available %}
+                    <a href="{% url 'product_detail' item.id %}"
+                        class="btn btn-dark mt-auto mb-3">
+                        商品追加
+                    </a>
+                    {% else %}
+                    <p class="text-muted bg-secondary bg-opacity-25 rounded p-2 mb-3">
+                        只今品切れ中です
+                    </p>
+                    {% endif %}
+                </div>
             </div>
         </div>
         {% empty %}
