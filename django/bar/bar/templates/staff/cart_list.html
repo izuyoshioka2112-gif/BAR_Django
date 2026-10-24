@@ -1,8 +1,8 @@
 {% extends 'staff_base.html' %}
-<meta http-equiv="refresh" content="15">
 {% block title %}注文リスト{% endblock title %}
 
 {% block content %}
+<meta http-equiv="refresh" content="15">
 <h2>注文リスト</h2>
 {% for order in object_list %}
 {% if order.is_completed == False %}
