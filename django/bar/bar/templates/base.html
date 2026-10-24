@@ -144,6 +144,29 @@
     function confirmOrder() {
         return confirm('この内容で注文を確定しますか？');
     }
+
+    // スタッフのところだけ10行で更新
+    const choicesUrl = "{% url 'staff_choices_fragment' %}";
+    // 囲われてる部分を繰り返す↓
+    setInterval(async () => {
+        const box = document.getElementById("staff-choices"); //htmlからstaff-choicesを見つけてくる
+        const selected = box.querySelector('input[name="staff"]:checked')?.value; //選択されてるスタッフをみる
+
+        // スタッフ欄のサーバに取りに行く
+        const response = await fetch(choicesUrl);
+        if (!response.ok) return;
+
+        box.innerHTML = await response.text(); //受け取ったhtmlでその欄だけ変える
+        if (selected){
+            // まず選べるスタッフボタンを全て見る
+            const radio = [...box.querySelectorAll('input[name="staff"]')]
+                // 選択されたスタッフボタンを見るける
+                .find(input => input.value === selected);
+            // ボタンがあればtrueになる
+            if (radio) radio.checked = true;
+        }
+    }, 5000);
+
 </script>
 </body>
 </html>

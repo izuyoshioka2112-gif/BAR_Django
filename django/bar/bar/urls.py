@@ -28,6 +28,7 @@ urlpatterns = [
     path("stock/", views.ProductStock.as_view(), name="stock"),
     path("stock/toggle/", views.product_stock_api, name="product_stock_api"),
     path("staff/toggle/", views.staff_toggle_api, name="staff_toggle_api"),
+    path("staff/choices/", views.staff_choices_fragment, name="staff_choices_fragment"),
 ]
 # 役割一つにつき１path
 

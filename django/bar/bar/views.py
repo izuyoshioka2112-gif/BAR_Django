@@ -83,7 +83,13 @@ def staff_toggle_api(request):
         return JsonResponse({"status": "ok"})
     return JsonResponse({"status": "error"}, status=400)
 
-
+def staff_choices_fragment(request):
+    staff_list = Staff.objects.filter(is_available=True)
+    return render(
+        request,
+        "product/staff_choices.html",
+        {"staff_list": staff_list}
+    )
 def add_to_cart_api(request):
     if request.method == "POST":
         data = json.loads(request.body)
