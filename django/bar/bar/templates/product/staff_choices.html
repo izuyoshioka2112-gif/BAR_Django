@@ -1,0 +1,20 @@
+<div class="d-flex flex-wrap gap-3">
+    {% for staff in staff_list %}
+    {% if staff.is_available %}
+    <div class="d-flex flex-column align-items-center">
+        <img src="{{ staff.photo.url }}" alt="{{ staff.name }}" class="img-photo">
+
+        <input type="radio"
+        name="staff"
+        id="staff-{{ staff.id }}"
+        value="{{ staff.id }}"
+        class="btn-check"
+        required>
+        <label for="staff-{{ staff.id }}" class="btn btn-outline-dark mt-2">
+            {{ staff.name }}
+        </label>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+

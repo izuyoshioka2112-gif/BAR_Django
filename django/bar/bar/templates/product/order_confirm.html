@@ -42,24 +42,8 @@
             <fieldset>
                 <legend class="fs-7">担当スタッフ</legend>
                 <legend class="fs-6">*一人お選びください</legend>
-                <div class="d-flex flex-wrap gap-3">
-                    {% for staff in staff_list %}
-                    {% if staff.is_available %}
-                    <div class="d-flex flex-column align-items-center">
-                        <img src="{{ staff.photo.url }}" alt="{{ staff.name }}" class="img-photo">
-
-                        <input type="radio"
-                                name="staff"
-                                id="staff-{{ staff.id }}"
-                                value="{{ staff.id }}"
-                                class="btn-check"
-                                required>
-                        <label for="staff-{{ staff.id }}" class="btn btn-outline-dark mt-2">
-                            {{ staff.name }}
-                        </label>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
+                <div id="staff-choices">
+                    {% include "product/staff_choices.html" %}
                 </div>
             </fieldset>
         </div>
