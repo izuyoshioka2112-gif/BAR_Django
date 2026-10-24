@@ -220,7 +220,6 @@ def order_confirm_view(request):
         )
     staff_list = Staff.objects.filter(is_available=True)
     # is_activeがTrueの人だけ取得
-    table_range = range(1, 5)
     # kaunta-_range = range(1,5)
     # テーブルが四個とカウンターが４こ
     # テーブル個数↑
@@ -230,7 +229,6 @@ def order_confirm_view(request):
         {
             "cart_items": cart_items,
             "staff_list": staff_list,
-            "table_range": table_range,
         },
     )
 

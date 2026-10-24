@@ -9,11 +9,10 @@
 <div class="card m-3">
     <div class="p-3">
         <h4>指名：{{order.staff}}</h4>
-        <h4>卓番号：{{order.table_number}}</h4>
+        <h4>ニックネーム：{{order.nickname}}</h4>
     </div>
     {% for item in order.items.all %}
     <div class="card-body">
-        <h5 class="card-name">{{ item.product }}</h5>
         <h6>{{ item.quantity }}個</h6>
     </div>
     {% endfor %}
