@@ -7,7 +7,10 @@
     <div class="card shadow-sm mx-auto" style="max-width: 32rem;">
         <div class="card-body p-4 product-card">
             <h2 class="card-title mb-3">{{ object.name }}</h2>
-
+            <div class="mb-3">
+                <p class="fw-semibold mb-1 fs-6">アレルギー</p>
+                <p class="mb-0 fs-7">{{ object.allergy }}</p>
+            </div>
             <label for="quantity" class="form-label">数量</label>
             <select id="quantity" name="quantity" class="form-select mb-3">
                 {% for i in quantity_range %}

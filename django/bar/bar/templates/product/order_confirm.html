@@ -33,9 +33,15 @@
 
         <div class="card-body product-card">
             <h4 class="mb-4">選択必須項目</h4>
-            <!-- ここに名前を書く（重複OKパスいらない） -->
+            <div class="mb-4">
+                <label for="nickname" class="fs-5">ニックネーム</label>
+                <label for="nickname" class="fs-6">*10文字以内で入力してください</label>
+                <input type="text" name="nickname" id="nickname"
+                    class="form-control" maxlength="10" required>
+            </div>
             <fieldset>
-                <legend class="fs-6">担当スタッフ</legend>
+                <legend class="fs-7">担当スタッフ</legend>
+                <legend class="fs-6">*一人お選びください</legend>
                 <div class="d-flex flex-wrap gap-3">
                     {% for staff in staff_list %}
                     {% if staff.is_available %}
@@ -43,11 +49,11 @@
                         <img src="{{ staff.photo.url }}" alt="{{ staff.name }}" class="img-photo">
 
                         <input type="radio"
-                               name="staff"
-                               id="staff-{{ staff.id }}"
-                               value="{{ staff.id }}"
-                               class="btn-check"
-                               required>
+                                name="staff"
+                                id="staff-{{ staff.id }}"
+                                value="{{ staff.id }}"
+                                class="btn-check"
+                                required>
                         <label for="staff-{{ staff.id }}" class="btn btn-outline-dark mt-2">
                             {{ staff.name }}
                         </label>

@@ -3,23 +3,9 @@ from django.db import models
 # Create your models here.
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=100, unique=True)  # uniqueは重複ないようにしてる
-
-    def __str__(self):
-        return self.name
-
-
 class Product(models.Model):
     name = models.CharField(max_length=100)
-    price = models.IntegerField()
     allergy = models.TextField(max_length=100, default="アレルゲン該当なし")
-    category = models.ForeignKey(
-        Category,
-        on_delete=models.PROTECT,
-        related_name="products",
-        # on_deleteはproductに決めてるカテゴリがある場合変更不可
-    )
     is_available = models.BooleanField(default=True)
 
     def __str__(self):
@@ -38,7 +24,7 @@ class Staff(models.Model):
 
 
 class Order(models.Model):
-    table_number = models.IntegerField()
+    nickname = models.CharField(max_length=10, default="")
     staff = models.ForeignKey(Staff, on_delete=models.SET_NULL, null=True)
     # スタッフクラスと紐付け、スタッフがいない場合注文のスタッフの欄だけをヌルにする（いなくても動くために）
     created_at = models.DateTimeField(auto_now_add=True)
