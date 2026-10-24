@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_list_or_404
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from .models import Product, Staff, Order, OrderItem
 import json
@@ -16,7 +16,6 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 
 class ListProductView(ListView):
     template_name = "product/product_list.html"
-    queryset = Product.objects.order_by("category")
 
 @method_decorator(ensure_csrf_cookie, name="dispatch")
 class DetailListProductView(DetailView):
@@ -185,11 +184,13 @@ def order_confirm_view(request):
         messages.error(request, "商品が入っていません")
         return redirect("cart")
     if request.method == "POST":
+        nickname = request.POST.get("nickname", "").strip()
         staff_id = request.POST.get("staff")
         # POST.get＝お客のブラウザから取ってきてる
         staff = Staff.objects.get(id=staff_id)
         # objects.get＝DBから取ってきてる
         order = Order.objects.create(
+            nickname=nickname,
             staff=staff,
         )
         invalid_ids = []
