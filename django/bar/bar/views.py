@@ -16,6 +16,7 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 
 class ListProductView(ListView):
     template_name = "product/product_list.html"
+    model = Product
 
 @method_decorator(ensure_csrf_cookie, name="dispatch")
 class DetailListProductView(DetailView):

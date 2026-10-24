@@ -13,7 +13,7 @@
     </div>
     {% for item in order.items.all %}
     <div class="card-body">
-        <h6>{{ item.quantity }}個</h6>
+        <h5>{{ item.product.name }}  :  {{ item.quantity }}  個</h5>
     </div>
     {% endfor %}
     {{order.created_at}}
