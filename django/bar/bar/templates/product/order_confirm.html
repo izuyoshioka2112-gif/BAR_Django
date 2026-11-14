@@ -36,12 +36,10 @@
             <div class="mb-4">
                 <label for="nickname" class="fs-5">ニックネーム</label>
                 <label for="nickname" class="fs-6">*10文字以内で入力してください</label>
-                <input type="text" name="nickname" id="nickname"
-                    class="form-control" maxlength="10" required>
+                <input type="text" name="nickname" id="nickname" class="form-control" maxlength="10" required>
             </div>
             <fieldset>
                 <legend class="fs-7">担当スタッフ</legend>
-                <legend class="fs-6">*一人お選びください</legend>
                 <div id="staff-choices">
                     {% include "product/staff_choices.html" %}
                 </div>
